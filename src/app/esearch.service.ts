@@ -89,7 +89,6 @@ export class EsearchService {
   getChapter(book, cid): any {
     return this.client.search({
       index: "chapters",
-      type: "doc",
       body: {
         query: {
           bool: {
@@ -104,7 +103,6 @@ export class EsearchService {
   getChapterVerses(size, from, book, cid): any {
     return this.client.search({
       index: "books",
-      type: "doc",
       body: {
         sort: [
           {
@@ -130,7 +128,6 @@ export class EsearchService {
   searchAll(queryTerm: string, size= 10000, from= 0): any {
     return this.client.search({
       index: "books",
-      type: "doc",
       body: {
         sort: [
           {
@@ -160,7 +157,7 @@ export class EsearchService {
   getActivityStream(): any {}
 
   updateVerse(id: string, data: any): any {
-    const url: string = this.baseURL + "/books/doc/" + id + "/_update";
+    const url: string = this.baseURL + "/books/" + id + "/_update";
     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
 
@@ -168,7 +165,7 @@ export class EsearchService {
   }
 
   addLike(verseID: string): any {
-    const url: string = this.baseURL + "/likes/_doc/";
+    const url: string = this.baseURL + "/likes/";
     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
     const data = {
@@ -180,7 +177,7 @@ export class EsearchService {
   }
 
   addComment(verseID: string, userComment: string): any {
-    const url: string = this.baseURL + "/comments/_doc";
+    const url: string = this.baseURL + "/comments";
     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
     const data = {
@@ -197,7 +194,7 @@ export class EsearchService {
   }
 
   getLikesCount(verseID: string): any {
-    const url: string = this.baseURL + "/likes/_doc/_count?q=parentVerseId:" + verseID;
+    const url: string = this.baseURL + "/likes/_count?q=parentVerseId:" + verseID;
 /*     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
  */
@@ -205,7 +202,7 @@ export class EsearchService {
   }
 
   getCommentsCount(verseID: string): any {
-    const url: string = this.baseURL + "/comments/_doc/_count?q=parentVerseId:" + verseID;
+    const url: string = this.baseURL + "/comments/_count?q=parentVerseId:" + verseID;
 /*     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
  */
@@ -229,7 +226,6 @@ export class EsearchService {
   getBookChapters(size, from, book): any {
     return this.client.search({
       index: "chapters",
-      type: "doc",
       body: {
         sort: [
           {
