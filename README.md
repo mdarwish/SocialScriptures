@@ -1,26 +1,34 @@
-# Angular4App
+# Social Scripture
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### 1- Install ELK stack
+### 2- Run Elasticsearch
+### 3- Run Kibana (optional)
 
-## Code scaffolding
+## Configuration
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 1- Import chapters
+logstash --debug -f chapters.conf
+logstash --debug -f chapters-acronyms.conf
+
+
+### 2- Import quran arabic verse
+logstash --debug -f quran.conf
+logstash --debug -f arabic-v.conf
+logstash --debug -f arabic-v-simple.conf
+
+### 3- Import bible
+logstash --debug -f bible.conf
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Running
+Run `ng build` to start the development server
 
 ## Further help
 
