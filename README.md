@@ -3,29 +3,29 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
 ## Requirements
-### 1- ELK 6.2.2
-### 2- Angular 5 or 6
-### 3- NodeJS
-### 4- SemanticUI library
+#### 1- ELK 6.2.2
+#### 2- Angular 5 or 6
+#### 3- NodeJS
+#### 4- SemanticUI library
 
 ## Installation
 
-### 1- Clone this repository
-### 2- Install ELK stack
-### 3- Run Elasticsearch
-### 4- Run Kibana (optional)
+#### 1- Clone this repository
+#### 2- Install ELK stack
+#### 3- Run Elasticsearch
+#### 4- Run Kibana (optional)
 
 ## Configuration
 
-### 1- Import chapters
+#### 1- Import chapters
 logstash --debug -f chapters.conf
 logstash --debug -f chapters-acronyms.conf
 
 
-### 2- Import quran arabic verse
+#### 2- Import quran arabic verse
 logstash --debug -f quran.conf
 
-### 3- Import bible
+#### 3- Import bible
 logstash --debug -f bible.conf
 
 ## Build
