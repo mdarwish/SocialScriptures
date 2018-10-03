@@ -18,6 +18,46 @@ content-type: application/json
 }
 
 ###
+POST http://localhost:9200/chapters/doc/_search?size=500&from=0
+content-type: application/json
+
+  {
+    "sort": [
+      {
+        "q_order": {
+          "order": "asc"
+        }
+      }
+    ],
+    "query": {
+      "bool": {
+        "must": [
+          {
+            "term": {
+              "type": "quran"
+            }
+          }
+        ]
+      }
+    }
+  }
+  <- 200
+  {
+    "took": 2,
+    "timed_out": false,
+    "_shards": {
+      "total": 5,
+      "successful": 5,
+      "failed": 0
+    },
+    "hits": {
+      "total": 0,
+      "max_score": null,
+      "hits": []
+    }
+  }
+
+###
 GET http://localhost:9200/chapters/_search
 content-type: application/json
 
