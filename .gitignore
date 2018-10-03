@@ -8,6 +8,7 @@
 
 # dependencies
 /node_modules
+/semantic
 
 # IDEs and editors
 /.idea
