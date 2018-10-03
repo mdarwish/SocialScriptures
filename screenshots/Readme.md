@@ -1,11 +1,11 @@
 ## Home page
-![alt text](https://github.com/mdarwish/SocialScriptures/screenshots/Home.PNG?raw=true)
+![alt text](https://github.com/mdarwish/SocialScriptures/blob/master/screenshots/Home.PNG)
 
 ## Switching books
-![alt text](https://github.com/mdarwish/SocialScriptures/screenshots/Bible.PNG?raw=true)
+![alt text](https://github.com/mdarwish/SocialScriptures/blob/master/screenshots/Bible.PNG?raw=true)
 
 ## Search
-![alt text](https://github.com/mdarwish/SocialScriptures/screenshots/Search.PNG?raw=true)
+![alt text](https://github.com/mdarwish/SocialScriptures/blob/master/screenshots/Search.PNG?raw=true)
 
 ## Registration
-![alt text](https://github.com/mdarwish/SocialScriptures/screenshots/Register.PNG?raw=true)
+![alt text](https://github.com/mdarwish/SocialScriptures/blob/master/screenshots/Register.PNG?raw=true)
