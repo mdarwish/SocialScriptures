@@ -1,0 +1,50 @@
+  <div class="ui row" ng-hide="lazyLoad">
+      <div class="ui {{lazyLoad}} inverted dimmer">
+        <div class="ui text loader">In a moment...</div>
+      </div>
+      <p></p>
+    </div>
+<div *ngIf="lazyLoad !=='active'">
+<div class="ui internally celled grid">
+  <div class="column">
+    <div class="ui row center aligned votes">
+      <div class="ui statistic">
+        <div class="value">
+          {{ chapter._source.en_name }}
+        </div>
+        <div class="value">
+          {{ chapter._source.ar_name }}
+        </div>
+      </div>
+      <!--       <div class="ui styled">
+        <button *ngIf="showPrev" class="ui left labeled icon button">
+          <i class="left arrow icon"></i>
+          Previous Chapter
+        </button>
+        <button *ngIf="showNext" class="ui right labeled icon button">
+          <i class="right arrow icon"></i>
+          Next Chapter
+        </button>
+      </div>
+ -->
+    </div>
+    <div class="ui styled fluid row">
+      <div class="ui styled fluid accordion">
+        <div *ngFor="let vs of verses">
+          <app-verse [verse]=vs [chapter]=chapter></app-verse>
+        </div>
+      </div>
+    </div>
+    <div class="ui styled fluid">
+      <button *ngIf="showPrev" class="ui left floated icon labeled button">
+        <i class="left floated chevron icon"></i>
+        Next
+      </button>
+      <button *ngIf="showNext" class="ui right floated icon labeled button">
+        <i class="right floated chevron icon"></i>
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,9 @@
+<div class="ui styled accordion">
+  <div class="ui comments">
+    <h3 class="ui dividing title header" (click)="toggleExpand()">Comments</h3>
+    <div class="{{contentCollapse}}">
+      <div *ngFor="let comment of comments">
+        <app-comment [comment] = comment></app-comment>
+      </div>
+    </div>
+  </div>

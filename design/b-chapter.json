@@ -1,0 +1,25 @@
+{
+        "_index": "chapters",
+        "_type": "doc",
+        "_id": "BJC2UWIB38PYFiQaZzlD",
+        "_score": null,
+        "_source": {
+          "@version": "1",
+          "t_order": 1,
+          "@timestamp": "2018-03-23T07:15:30.435Z",
+          "testament": "O",
+          "column8": null,
+          "message": "1|\"Gen\"|1|\"Genesis\"|\"سفر التكوين\"|\"O\"|\"Genesis Genesis speaks of beginnings and is foundational to the understanding of the rest of the Bible. It is supremely a book that speaks about relationships, highlighting those between God and his creation, between God and humankind, and between human beings.\"|",
+          "en_name": "Genesis",
+          "ar_name": "سفر التكوين",
+          "host": "dodz-GE63VR-7RE",
+          "path": "/home/dodz/Data/Development/Faithbook/row-data/Bible/Bible_chapters.csv",
+          "q_order": 1,
+          "summary": "Genesis Genesis speaks of beginnings and is foundational to the understanding of the rest of the Bible. It is supremely a book that speaks about relationships, highlighting those between God and his creation, between God and humankind, and between human beings.",
+          "short": "Gen",
+          "type": "bible"
+        },
+        "sort": [
+          1
+        ]
+      }

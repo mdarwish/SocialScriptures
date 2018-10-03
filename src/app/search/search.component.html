@@ -1,0 +1,61 @@
+<div class="ui row middle aligned center aligned grid">
+    <div *ngIf="resultCount > 0" class="ui row middle aligned center aligned">
+        {{resultCount}} Results ({{nOfPages}} pages) for searching the term: {{searchTerm}}
+    </div>
+    <div *ngIf="resultCount > 0" class="ui row middle aligned center aligned">
+        <button
+            *ngIf="showPrev"
+            class="ui left floated labeled icon button"
+            (click)="onPrev()">
+            <i class="left floated arrow icon"></i>
+            Previous
+        </button>
+        <div class="ui label">
+            Current
+            <div class="detail">
+                {{ currentPage + 1 }}
+            </div>
+        </div>
+        <button
+            *ngIf="showNext"
+            class="ui right floated labeled icon button"
+            (click)="onNext()">
+            <i class="right floated arrow icon"></i>
+            Next
+        </button>
+    </div>
+    <div class="ui row middle aligned center aligned grid">
+        <div class="ui styled fluid accordion">
+            <div
+                *ngFor="let result of searchResults.slice(currentPage * maxNumVersePPage, (currentPage * maxNumVersePPage) + maxNumVersePPage - 1)">
+                <app-verse [verse]="result"></app-verse>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="resultCount > 0" class="ui row middle aligned center aligned ">
+        <button
+            *ngIf="showPrev"
+            class="ui left floated labeled icon button"
+            (click)="onPrev()">
+            <i class="left floated arrow icon"></i>
+            Previous
+        </button>
+        <div class="ui label">
+            Current
+            <div class="detail">
+                {{ currentPage + 1 }}
+            </div>
+        </div>
+        <button
+            *ngIf="showNext"
+            class="ui right floated labeled icon button"
+            (click)="onNext()">
+            <i class="right floated arrow icon"></i>
+            Next
+        </button>
+    </div>
+</div>
+
+<div class="ui visible right sidebar">
+    <app-pie-chart [data]="aggregations"></app-pie-chart>
+</div>

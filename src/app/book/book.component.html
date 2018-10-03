@@ -1,0 +1,70 @@
+  <div class="ui row form">
+    <div class="two fields">
+      <div class="field">
+        <label>Chapter</label>
+        <select name="profile" [ngModel]="selectedChapter">
+          <option [ngValue]="null" disabled>Chapter</option>
+          <option *ngFor="let chapter of chapters" [ngValue]="chapter._source.q_order">
+            {{ chapter._source.en_name }} - {{ chapter._source.ar_name }}
+          </option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Verse</label>
+        <select [(ngModel)]="selectedVerse" class="ui fluid dropdown">
+          <option [ngValue]=null>Verse</option>
+          <option [ngValue]=1>1</option>
+          <option [ngValue]=2>2</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Verses/Page</label>
+        <select [(ngModel)]="maxNumVersePPage" class="ui fluid dropdown">
+          <option [ngValue]=10>10</option>
+          <option [ngValue]=20>20</option>
+          <option [ngValue]=30>30</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="ui row middle aligned center aligned ">
+    <button *ngIf="showPrev" class="ui left floated labeled icon button" (click)="onPrev()">
+      <i class="left floated arrow icon"></i>
+      Previous
+    </button>
+    <div class="ui label">
+      Current
+      <div class="detail"> {{ currentPage + 1 }} </div>
+    </div>
+    <button *ngIf="showNext" class="ui right floated labeled icon button" (click)="onNext()">
+      <i class="right floated arrow icon"></i>
+      Next
+    </button>
+  </div>
+  <div class="ui row" ng-hide="lazyLoad">
+      <div class="ui {{lazyLoad}} inverted dimmer">
+        <div class="ui text loader">In a moment...</div>
+      </div>
+      <p></p>
+    </div>
+<div *ngIf="lazyLoad !=='active'">
+  <div *ngFor="let chapter of chapters.slice(currentPage * maxChaptersPPage, (currentPage * maxChaptersPPage) + maxChaptersPPage - 1)">
+    <app-chapter [bname]=selectedBook [cid]=chapter._source.t_order></app-chapter>
+  </div>
+  <div class="ui row middle aligned center aligned ">
+    <button *ngIf="showPrev" class="ui left floated labeled icon button" (click)="onPrev()">
+      <i class="left floated arrow icon"></i>
+      Previous
+    </button>
+    <div class="ui label">
+      Current
+      <div class="detail"> {{ currentPage + 1 }} </div>
+    </div>
+    <button *ngIf="showNext" class="ui right floated labeled icon button" (click)="onNext()">
+      <i class="right floated arrow icon"></i>
+      Next
+    </button>
+  
+  
+  </div>
+</div>

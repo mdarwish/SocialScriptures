@@ -1,0 +1,62 @@
+{
+  "parentVerseId": "1.1",
+  "user": "jsmith",
+  "timestamp": "2018-03-04T08:49:07.210Z",
+  "comment": "This is greate",
+  "likes": {
+    "total": 1,
+    "usersChrono": [
+      {
+        "user": "jsmith",
+        "timestamp": "2018-03-04T08:49:07.210Z"
+      },
+      {
+        "user": "jsmith",
+        "timestamp": "2018-03-04T08:49:07.210Z"
+      }
+    ]
+  },
+  "replies": {
+    "total": 2,
+    "usersChrono": [
+      {
+        "user": "jsmith",
+        "timestamp": "2018-03-04T08:49:07.210Z",
+        "comment": "This is greate",
+        "likes": {
+          "total": 1,
+          "usersChrono": [
+            {
+              "user": "jsmith",
+              "timestamp": "2018-03-04T08:49:07.210Z"
+            },
+            {
+              "user": "jsmith",
+              "timestamp": "2018-03-04T08:49:07.210Z"
+            }
+          ]
+        },
+        "replies": {}
+      },
+      {
+        "user": "jsmith",
+        "timestamp": "2018-03-04T08:49:07.210Z",
+        "comment": "This is greate",
+        "likes": {
+          "total": 1,
+          "usersChrono": [
+            {
+              "user": "jsmith",
+              "timestamp": "2018-03-04T08:49:07.210Z"
+            },
+            {
+              "user": "jsmith",
+              "timestamp": "2018-03-04T08:49:07.210Z"
+            }
+          ]
+        },
+        "replies": {}
+      }
+    ]
+  }
+}

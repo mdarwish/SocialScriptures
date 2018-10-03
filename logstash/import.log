@@ -1,0 +1,218 @@
+{:timestamp=>"2016-11-13T14:51:37.278000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T14:51:37.282000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T14:51:37.479000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/chapters-order2.txt"], :level=>:info}
+{:timestamp=>"2016-11-13T14:51:37.686000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T14:51:37.689000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T14:51:37.700000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T14:51:37.991000-0500", :message=>"Error parsing csv", :field=>"message", :source=>"", :exception=>#<NoMethodError: undefined method `each_index' for nil:NilClass>, :level=>:warn}
+{:timestamp=>"2016-11-13T14:53:03.215000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T14:53:03.219000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T14:53:03.222000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T14:53:03.225000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T14:53:03.835000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T14:53:04.008000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T15:03:59.125000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T15:03:59.130000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T15:03:59.277000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/chapters-order2.txt"], :level=>:info}
+{:timestamp=>"2016-11-13T15:03:59.491000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T15:03:59.494000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T15:03:59.512000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T15:03:59.752000-0500", :message=>"Error parsing csv", :field=>"message", :source=>"", :exception=>#<NoMethodError: undefined method `each_index' for nil:NilClass>, :level=>:warn}
+{:timestamp=>"2016-11-13T15:07:40.799000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T15:07:40.802000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T15:07:40.804000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:07:40.808000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:07:41.726000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T15:07:41.984000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T15:07:52.535000-0500", :message=>"fetched an invalid config", :config=>"input {  \n      file {\n          path => \"/home/dodz/Info/Developement/Faithbook/row-data/chapters-order2.txt\"\n\t  ignore_older => 0\n\t  sincedb_path => \"\"\n          type => \"chapter\"\n\t  codec => plain {\n\t\tcharset => \"UTF-8\"\n\t  }\n          start_position => \"beginning\"\n      }\n}\n\nfilter {  \n\t# Remove empty lines:\n\tgrep { \n\t\tmatch => [ \"message\", \"^\\s*$\" ]\n\t\tnegate => true\n\t}\n\tcsv {\n\t\tcolumns => [\"r-order\",\"name\",\"q-order\",\"place\"]\n\t\tseparator => \"|\"\n\t}\n\tmutate {\n\t\tconvert => [\"r-order\", \"integer\"]\n\t\tconvert => [\"q-order\", \"integer\"]\n\t}\n}\n\noutput {  \n    elasticsearch {\n        hosts => \"localhost:9200\"\n        index => \"quran\"\n\tmanage_template => false\n\taction => \"index\"\n\tdocument_type => \"chapter\"\n\tdocument_id => \"%{q-order}\"\n\t}\n}\n\n", :reason=>"Couldn't find any filter plugin named 'grep'. Are you sure this is correct? Trying to load the grep filter plugin resulted in this error: no such file to load -- logstash/filters/grep", :level=>:error}
+{:timestamp=>"2016-11-13T15:07:52.541000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T15:13:03.699000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T15:13:03.703000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T15:13:03.862000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/chapters-order2.txt"], :level=>:info}
+{:timestamp=>"2016-11-13T15:13:04.069000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T15:13:04.071000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T15:13:04.102000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T15:15:00.061000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T15:15:00.064000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T15:15:00.066000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:15:00.069000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:15:00.257000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T15:15:00.421000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T15:21:00.382000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T15:21:00.387000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T15:21:00.601000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/Quran with Recitation-unicode-no-head3.csv"], :level=>:info}
+{:timestamp=>"2016-11-13T15:21:00.806000-0500", :message=>"Using mapping template from", :path=>nil, :level=>:info}
+{:timestamp=>"2016-11-13T15:21:00.948000-0500", :message=>"Attempting to install template", :manage_template=>{"template"=>"logstash-*", "settings"=>{"index.refresh_interval"=>"5s"}, "mappings"=>{"_default_"=>{"_all"=>{"enabled"=>true, "omit_norms"=>true}, "dynamic_templates"=>[{"message_field"=>{"match"=>"message", "match_mapping_type"=>"string", "mapping"=>{"type"=>"string", "index"=>"analyzed", "omit_norms"=>true, "fielddata"=>{"format"=>"disabled"}}}}, {"string_fields"=>{"match"=>"*", "match_mapping_type"=>"string", "mapping"=>{"type"=>"string", "index"=>"analyzed", "omit_norms"=>true, "fielddata"=>{"format"=>"disabled"}, "fields"=>{"raw"=>{"type"=>"string", "index"=>"not_analyzed", "ignore_above"=>256}}}}}], "properties"=>{"@timestamp"=>{"type"=>"date"}, "@version"=>{"type"=>"string", "index"=>"not_analyzed"}, "geoip"=>{"dynamic"=>true, "properties"=>{"ip"=>{"type"=>"ip"}, "location"=>{"type"=>"geo_point"}, "latitude"=>{"type"=>"float"}, "longitude"=>{"type"=>"float"}}}}}}}, :level=>:info}
+{:timestamp=>"2016-11-13T15:21:01.050000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T15:21:01.054000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T15:21:01.095000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T15:27:49.182000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T15:27:49.183000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T15:27:49.184000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:27:49.186000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:27:49.398000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T15:27:49.467000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T15:29:22.433000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T15:29:22.440000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T15:29:22.609000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/quran-simple-noBasmala2.csv"], :level=>:info}
+{:timestamp=>"2016-11-13T15:29:22.862000-0500", :message=>"Using mapping template from", :path=>nil, :level=>:info}
+{:timestamp=>"2016-11-13T15:29:23.016000-0500", :message=>"Attempting to install template", :manage_template=>{"template"=>"logstash-*", "settings"=>{"index.refresh_interval"=>"5s"}, "mappings"=>{"_default_"=>{"_all"=>{"enabled"=>true, "omit_norms"=>true}, "dynamic_templates"=>[{"message_field"=>{"match"=>"message", "match_mapping_type"=>"string", "mapping"=>{"type"=>"string", "index"=>"analyzed", "omit_norms"=>true, "fielddata"=>{"format"=>"disabled"}}}}, {"string_fields"=>{"match"=>"*", "match_mapping_type"=>"string", "mapping"=>{"type"=>"string", "index"=>"analyzed", "omit_norms"=>true, "fielddata"=>{"format"=>"disabled"}, "fields"=>{"raw"=>{"type"=>"string", "index"=>"not_analyzed", "ignore_above"=>256}}}}}], "properties"=>{"@timestamp"=>{"type"=>"date"}, "@version"=>{"type"=>"string", "index"=>"not_analyzed"}, "geoip"=>{"dynamic"=>true, "properties"=>{"ip"=>{"type"=>"ip"}, "location"=>{"type"=>"geo_point"}, "latitude"=>{"type"=>"float"}, "longitude"=>{"type"=>"float"}}}}}}}, :level=>:info}
+{:timestamp=>"2016-11-13T15:29:23.168000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T15:29:23.183000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T15:29:23.200000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T15:32:41.100000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T15:32:41.102000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T15:32:41.103000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:32:41.105000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:32:41.682000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T15:32:41.800000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T15:32:51.207000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T15:32:51.213000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T15:32:51.356000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/quran-simple-noBasmala2.csv"], :level=>:info}
+{:timestamp=>"2016-11-13T15:32:51.564000-0500", :message=>"Using mapping template from", :path=>nil, :level=>:info}
+{:timestamp=>"2016-11-13T15:32:51.715000-0500", :message=>"Attempting to install template", :manage_template=>{"template"=>"logstash-*", "settings"=>{"index.refresh_interval"=>"5s"}, "mappings"=>{"_default_"=>{"_all"=>{"enabled"=>true, "omit_norms"=>true}, "dynamic_templates"=>[{"message_field"=>{"match"=>"message", "match_mapping_type"=>"string", "mapping"=>{"type"=>"string", "index"=>"analyzed", "omit_norms"=>true, "fielddata"=>{"format"=>"disabled"}}}}, {"string_fields"=>{"match"=>"*", "match_mapping_type"=>"string", "mapping"=>{"type"=>"string", "index"=>"analyzed", "omit_norms"=>true, "fielddata"=>{"format"=>"disabled"}, "fields"=>{"raw"=>{"type"=>"string", "index"=>"not_analyzed", "ignore_above"=>256}}}}}], "properties"=>{"@timestamp"=>{"type"=>"date"}, "@version"=>{"type"=>"string", "index"=>"not_analyzed"}, "geoip"=>{"dynamic"=>true, "properties"=>{"ip"=>{"type"=>"ip"}, "location"=>{"type"=>"geo_point"}, "latitude"=>{"type"=>"float"}, "longitude"=>{"type"=>"float"}}}}}}}, :level=>:info}
+{:timestamp=>"2016-11-13T15:32:51.844000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T15:32:51.857000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T15:32:51.866000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T15:34:31.129000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T15:34:31.130000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T15:34:31.131000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:34:31.133000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:34:31.417000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T15:34:31.566000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T15:34:43.042000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T15:34:43.048000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T15:34:43.200000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/quran-simple-noBasmala2.csv"], :level=>:info}
+{:timestamp=>"2016-11-13T15:34:43.418000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T15:34:43.431000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T15:34:43.442000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T15:41:05.560000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T15:41:05.563000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T15:41:05.564000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:41:05.566000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:41:06.324000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T15:41:06.431000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T15:56:12.846000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T15:56:12.850000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T15:56:13.017000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/quran-simple-noBasmala2.txt"], :level=>:info}
+{:timestamp=>"2016-11-13T15:56:13.222000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T15:56:13.236000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T15:56:13.255000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T15:58:08.512000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T15:58:08.515000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T15:58:08.516000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:58:08.518000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T15:58:09.078000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T15:58:09.164000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T15:58:33.219000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T15:58:33.223000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T15:58:33.398000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/quran-simple-clean-noBasmala2.txt"], :level=>:info}
+{:timestamp=>"2016-11-13T15:58:33.600000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T15:58:33.619000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T15:58:33.624000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T16:03:37.527000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T16:03:37.529000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T16:03:37.530000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:03:37.532000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:03:38.305000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T16:03:38.509000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T16:09:31.907000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T16:09:31.910000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T16:09:32.090000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/chapters-order2.txt"], :level=>:info}
+{:timestamp=>"2016-11-13T16:09:32.332000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T16:09:32.354000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T16:09:32.366000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T16:10:00.714000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T16:10:00.715000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T16:10:00.717000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:10:00.719000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:10:01.465000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T16:10:01.582000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T16:10:17.505000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T16:10:17.510000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T16:10:17.676000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/Quran with Recitation-unicode-no-head3.csv"], :level=>:info}
+{:timestamp=>"2016-11-13T16:10:17.922000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T16:10:17.941000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T16:10:17.960000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T16:14:07.999000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T16:14:08.003000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T16:14:08.004000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:14:08.005000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:14:08.087000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T16:14:08.170000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T16:14:28.376000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T16:14:28.381000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T16:14:28.598000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/quran-simple-clean-noBasmala2.txt"], :level=>:info}
+{:timestamp=>"2016-11-13T16:14:28.796000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T16:14:28.816000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T16:14:28.825000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T16:16:09.165000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T16:16:09.167000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T16:16:09.168000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:16:09.170000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:16:09.317000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T16:16:09.516000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T16:22:13.507000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T16:22:13.511000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T16:22:13.684000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/quranic-corpus-morphology2.csv"], :level=>:info}
+{:timestamp=>"2016-11-13T16:22:13.939000-0500", :message=>"Using mapping template from", :path=>nil, :level=>:info}
+{:timestamp=>"2016-11-13T16:22:14.162000-0500", :message=>"Attempting to install template", :manage_template=>{"template"=>"logstash-*", "settings"=>{"index.refresh_interval"=>"5s"}, "mappings"=>{"_default_"=>{"_all"=>{"enabled"=>true, "omit_norms"=>true}, "dynamic_templates"=>[{"message_field"=>{"match"=>"message", "match_mapping_type"=>"string", "mapping"=>{"type"=>"string", "index"=>"analyzed", "omit_norms"=>true, "fielddata"=>{"format"=>"disabled"}}}}, {"string_fields"=>{"match"=>"*", "match_mapping_type"=>"string", "mapping"=>{"type"=>"string", "index"=>"analyzed", "omit_norms"=>true, "fielddata"=>{"format"=>"disabled"}, "fields"=>{"raw"=>{"type"=>"string", "index"=>"not_analyzed", "ignore_above"=>256}}}}}], "properties"=>{"@timestamp"=>{"type"=>"date"}, "@version"=>{"type"=>"string", "index"=>"not_analyzed"}, "geoip"=>{"dynamic"=>true, "properties"=>{"ip"=>{"type"=>"ip"}, "location"=>{"type"=>"geo_point"}, "latitude"=>{"type"=>"float"}, "longitude"=>{"type"=>"float"}}}}}}}, :level=>:info}
+{:timestamp=>"2016-11-13T16:22:14.260000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T16:22:14.264000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T16:22:14.275000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T16:26:30.948000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T16:26:30.951000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T16:26:30.952000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:26:30.955000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:26:31.679000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T16:26:31.932000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T16:26:44.214000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T16:26:44.219000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T16:26:44.382000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/chapters-order2.txt"], :level=>:info}
+{:timestamp=>"2016-11-13T16:26:44.568000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T16:26:44.589000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T16:26:44.616000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T16:26:47.858000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T16:26:47.860000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T16:26:47.862000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:26:47.865000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:26:48.684000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T16:26:48.774000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T16:27:09.791000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T16:27:09.795000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T16:27:09.944000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/Quran with Recitation-unicode-no-head3.csv"], :level=>:info}
+{:timestamp=>"2016-11-13T16:27:10.169000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T16:27:10.192000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T16:27:10.207000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T16:27:24.245000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T16:27:24.247000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T16:27:24.250000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:27:24.253000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:27:24.313000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T16:27:24.406000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T16:27:42.326000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T16:27:42.330000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T16:27:42.485000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/quran-simple-clean-noBasmala2.txt"], :level=>:info}
+{:timestamp=>"2016-11-13T16:27:42.737000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T16:27:42.751000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T16:27:42.767000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T16:28:03.250000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T16:28:03.253000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T16:28:03.254000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:28:03.258000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:28:03.513000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T16:28:03.607000-0500", :message=>"Pipeline main has been shutdown"}
+{:timestamp=>"2016-11-13T16:28:19.605000-0500", :message=>"starting agent", :level=>:info}
+{:timestamp=>"2016-11-13T16:28:19.610000-0500", :message=>"starting pipeline", :id=>"main", :level=>:info}
+{:timestamp=>"2016-11-13T16:28:19.776000-0500", :message=>"Registering file input", :path=>["/home/dodz/Info/Developement/Faithbook/row-data/quranic-corpus-morphology2.csv"], :level=>:info}
+{:timestamp=>"2016-11-13T16:28:19.984000-0500", :message=>"Using mapping template from", :path=>nil, :level=>:info}
+{:timestamp=>"2016-11-13T16:28:20.123000-0500", :message=>"Attempting to install template", :manage_template=>{"template"=>"logstash-*", "settings"=>{"index.refresh_interval"=>"5s"}, "mappings"=>{"_default_"=>{"_all"=>{"enabled"=>true, "omit_norms"=>true}, "dynamic_templates"=>[{"message_field"=>{"match"=>"message", "match_mapping_type"=>"string", "mapping"=>{"type"=>"string", "index"=>"analyzed", "omit_norms"=>true, "fielddata"=>{"format"=>"disabled"}}}}, {"string_fields"=>{"match"=>"*", "match_mapping_type"=>"string", "mapping"=>{"type"=>"string", "index"=>"analyzed", "omit_norms"=>true, "fielddata"=>{"format"=>"disabled"}, "fields"=>{"raw"=>{"type"=>"string", "index"=>"not_analyzed", "ignore_above"=>256}}}}}], "properties"=>{"@timestamp"=>{"type"=>"date"}, "@version"=>{"type"=>"string", "index"=>"not_analyzed"}, "geoip"=>{"dynamic"=>true, "properties"=>{"ip"=>{"type"=>"ip"}, "location"=>{"type"=>"geo_point"}, "latitude"=>{"type"=>"float"}, "longitude"=>{"type"=>"float"}}}}}}}, :level=>:info}
+{:timestamp=>"2016-11-13T16:28:20.208000-0500", :message=>"New Elasticsearch output", :class=>"LogStash::Outputs::ElasticSearch", :hosts=>["localhost:9200"], :level=>:info}
+{:timestamp=>"2016-11-13T16:28:20.220000-0500", :message=>"Starting pipeline", :id=>"main", :pipeline_workers=>8, :batch_size=>125, :batch_delay=>5, :max_inflight=>1000, :level=>:info}
+{:timestamp=>"2016-11-13T16:28:20.241000-0500", :message=>"Pipeline main started"}
+{:timestamp=>"2016-11-13T16:29:38.501000-0500", :message=>"SIGINT received. Shutting down the agent.", :level=>:warn}
+{:timestamp=>"2016-11-13T16:29:38.502000-0500", :message=>"stopping pipeline", :id=>"main"}
+{:timestamp=>"2016-11-13T16:29:38.504000-0500", :message=>"Closing inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:29:38.505000-0500", :message=>"Closed inputs", :level=>:info}
+{:timestamp=>"2016-11-13T16:29:39.036000-0500", :message=>"Input plugins stopped! Will shutdown filter/output workers.", :level=>:info}
+{:timestamp=>"2016-11-13T16:29:39.111000-0500", :message=>"Pipeline main has been shutdown"}

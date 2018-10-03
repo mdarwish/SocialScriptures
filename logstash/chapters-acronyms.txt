@@ -1,0 +1,36 @@
+input {  
+      file {
+          path => "/home/dodz/Info/Developement/Faithbook/row-data/sura-acronyms.csv"
+	  ignore_older => 0
+	  sincedb_path => ""
+      type => "chapter"
+	  codec => plain {
+		charset => "UTF-8"
+	  }
+          start_position => "beginning"
+      }
+}
+
+filter {  
+	csv {
+		columns => ["r-order","name","q-order","place"]
+		separator => "|"
+	}
+	mutate {
+		convert => ["r-order", "integer"]
+		convert => ["q-order", "integer"]
+	}
+}
+
+output {  
+	elasticsearch {
+		hosts => "localhost:9200"
+		index => "quran"
+		manage_template => false
+		action => "index"
+		document_type => "chapter"
+		document_id => "%{q-order}"
+	}
+	stdout {
+	}
+}

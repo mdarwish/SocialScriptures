@@ -1,0 +1,22 @@
+{
+  "autoInstall": true,
+  "base": "semantic/",
+  "paths": {
+    "source": {
+      "config": "src/theme.config",
+      "definitions": "src/definitions/",
+      "site": "src/site/",
+      "themes": "src/themes/"
+    },
+    "output": {
+      "packaged": "../src/assets/vendor/semantic-ui/",
+      "uncompressed": "../src/assets/vendor/semantic-ui/components/",
+      "compressed": "../src/assets/vendor/semantic-ui/components/",
+      "themes": "../src/assets/vendor/semantic-ui/themes/"
+    },
+    "clean": "../src/assets/vendor/semantic-ui/"
+  },
+  "permission": false,
+  "rtl": both,
+  "version": "2.3.1"
+}

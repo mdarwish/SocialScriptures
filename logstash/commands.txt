@@ -1,0 +1,15 @@
+1- Import chapters
+logstash --debug -f chapters.conf
+logstash --debug -f chapters-acronyms.conf
+
+
+2- Import quran arabic verse
+logstash --debug -f quran.conf
+logstash --debug -f arabic-v.conf
+logstash --debug -f arabic-v-simple.conf
+
+3- Import bible
+logstash --debug -f bible.conf
+
+
+

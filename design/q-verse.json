@@ -1,0 +1,28 @@
+{
+        "_index": "books",
+        "_type": "doc",
+        "_id": "1.0",
+        "_score": null,
+        "_source": {
+          "@timestamp": "2018-03-04T08:56:44.522Z",
+          "en2": " In the name of Allah, the Beneficent, the Merciful  ",
+          "en3": " In the name of Allah, the Beneficent, the Merciful",
+          "en1": " In the name of Allah, Most Gracious, Most Merciful  ",
+          "path": "/home/dodz/Info/Developement/Faithbook/row-data/Quran/Quran with Recitation-unicode-no-head3.csv",
+          "type": "quran",
+          "gsort": 1,
+          "verse": 0,
+          "message": "1|1|1|1|0|\"بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ\"|\"1.0\"|\" Bismi -llahi rraḥmāni rraḥīmi\"|\" In the name of Allah, Most Gracious, Most Merciful  \"|\" In the name of Allah, the Beneficent, the Merciful  \"|\" In the name of Allah, the Beneficent, the Merciful\"",
+          "@version": "1",
+          "juz": 1,
+          "page": 1,
+          "chapter": 1,
+          "host": "dodzPrecision",
+          "bid": "1.0",
+          "ar": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+          "transcript": " Bismi -llahi rraḥmāni rraḥīmi"
+        },
+        "sort": [
+          1
+        ]
+      }

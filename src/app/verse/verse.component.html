@@ -1,0 +1,33 @@
+<div class="{{titleCollapse}}">
+  <i class="dropdown icon" (click)="toggleExpand()"></i>
+  <strong>Chapter:</strong> "{{chMeta._source.en_name}}" |
+  <strong>Verse:</strong> "{{ verse._source.verse }}"
+</div>
+<div class="{{contentCollapse}}">
+  <hr>
+  <p class="{{transition}}" style="direction: rtl; display: block !important;">{{verse._source.ar_simple}}</p>
+  <hr>
+  <p class="{{transition}}" style="display: block !important;">{{verse._source.en1}}</p>
+  <hr>
+  <div class="fluid card">
+    <div class="content">
+      <span class="right floated">
+        <i class="heart outline like icon" (click)="addLike()"></i>
+        <span *ngIf="social_interactions">
+          {{social_interactions.likes}}
+        </span>
+      </span>
+      <i class="comment icon" (click)="toggleComments()"></i>
+      <span *ngIf="social_interactions">
+        {{social_interactions.comments}}
+      </span>
+    </div>
+    <app-comments [comments] = comments *ngIf="commentsExpanded" class = "ui segment" ></app-comments>
+    <div class="extra content">
+      <div class="ui large transparent left icon input">
+        <i class="comment outline icon"></i>
+        <input placeholder="Add Comment..." type="text" (keypress)="addComment($event)" [(ngModel)]="userComment">
+      </div>
+    </div>
+  </div>
+</div>

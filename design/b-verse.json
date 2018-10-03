@@ -1,0 +1,33 @@
+{
+  "_index": "books",
+  "_type": "doc",
+  "_id": "Genesis.1.1",
+  "_score": null,
+  "_source": {
+    "column8": null,
+    "path": "/home/dodz/Info/Developement/Faithbook/row-data/Bible/bible_utf8.tsv.csv",
+    "@version": "1",
+    "b_orig_id": "01O",
+    "type": "bible",
+    "@timestamp": "2018-03-04T08:49:07.210Z",
+    "gsort": 1,
+    "testament": "O",
+    "message": "1|Genesis.1.1|01O|1|1|في البدء خلق الله السموات والارض.|In the beginning of God's preparing the heavens and the earth &#8212; ||",
+    "column9": null,
+    "number": "01",
+    "en1": "In the beginning of God's preparing the heavens and the earth &#8212; ",
+    "bid": "Genesis.1.1",
+    "verse": 1,
+    "host": "dodzPrecision",
+    "chapter": 1,
+    "ar_simple": "في البدء خلق الله السموات والارض.",
+    "social_agregates": {
+      "likes": 3,
+      "comments": 5,
+      "links": 4,
+      "photos": 0,
+      "videos": 0,
+      "shares": 0
+    }
+  }
+}

@@ -1,0 +1,355 @@
+GET http://localhost:9200/chapters/_search?sort=q_order:asc&q=type:quran
+
+###
+GET http://localhost:9200/chapters/_search HTTP/1.1
+content-type: application/json
+
+{
+  "query": {
+    "match_all": {}
+  }
+  , "sort": [
+    {
+      "q_order": {
+        "order": "asc"
+      }
+    }
+  ]
+}
+
+###
+GET http://localhost:9200/chapters/_search
+content-type: application/json
+
+{
+  "query": {
+    "match_all": {}
+  }
+  , "sort": [
+    {
+      "q_order": {
+        "order": "asc"
+      }
+    }
+  ]
+}
+
+###
+GET http://localhost:9200/chapters/_search
+content-type: application/json
+
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+###
+DELETE chapters
+
+###
+GET http://localhost:9200/chapters/_search?sort=q_order:asc
+
+###
+GET http://localhost:9200/chapters/_search?q=t_order:1%20AND%20testament:L
+
+###
+GET http://localhost:9200/chapters/_search?q=t_order:1%20AND%20testament:L
+
+###
+GET http://localhost:9200/books/_search?sort=gsort:asc&q=chapter:" + Quran.currentChapter + "%20AND%20type:
+
+###
+POST http://localhost:9200/books/_search?sort=gsort:asc&q=chapter:1%20AND%20type:quran
+
+###
+GET http://localhost:9200/books/_search?sort=gsort:asc&q=chapter:1%20AND%20type:quran
+
+###
+GET http://localhost:9200/books/_settings
+
+###
+POST http://localhost:9200/books/_search?from=1580
+content-type: application/json
+
+{
+  "sort": [
+    {
+      "gsort": {
+        "order": "asc"
+      }
+    }
+  ],
+  "query": {
+    "bool" : {
+      "must" : [
+        { "term" : { "type" : "bible" } },
+        { "term" : { "chapter" : 1 } }
+      ]
+    }
+  },
+  "_source": ["_id", "gsort", "type", "chapter", "verse", "testament","ar_simple", "en1"],
+  "size": 20
+}
+
+###
+POST http://localhost:9200/books/_search
+
+###
+GET http://localhost:9200/chapters/_search
+content-type: application/json
+
+{
+  "query": {
+    "bool" : {
+      "must" : [
+        { "term" : { "type" : "quran" } },
+        { "term" : { "t_order" : 1 } }
+      ]
+    }
+  },
+  "size": 20
+}
+
+###
+POST http://localhost:9200/chapters/doc/_search
+content-type: application/json
+
+{
+  "sort": [
+    {
+      "q_order": {
+        "order": "asc"
+      }
+    }
+  ],
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "type": "quran"
+          }
+        },
+        {
+          "term": {
+            "q_order": 1
+          }
+        }
+      ]
+    }
+  },
+  "size": 1
+}
+
+###
+GET http://localhost:9200/books/_search
+content-type: application/json
+
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "type": "quran"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "group_by_chapter": {
+      "terms": {
+        "field": "chapter"
+      }
+    }
+  }
+}
+
+###
+GET http://localhost:9200/books/_search
+content-type: application/json
+
+{
+  "aggs": {
+    "group_by_chapter": {
+      "terms": {
+        "field": "testament.keyword"
+      }
+    }
+  }
+}
+
+###
+PUT http://localhost:9200/books/doc/1.3
+content-type: application/json
+
+{
+  "@timestamp": "2018-03-04T08:56:44.522Z",
+  "en2": " Master of the Day of Judgment ",
+  "en3": " Master of the Day of Judgment,",
+  "en1": " Master of the Day of Judgment ",
+  "path": "/home/dodz/Info/Developement/Faithbook/row-data/Quran/Quran with Recitation-unicode-no-head3.csv",
+  "type": "quran",
+  "gsort": 4,
+  "verse": 3,
+  "message": "4|1|1|1|3|\"مَٰلِكِ يَوْمِ ٱلدِّينِ\"|\"1.3\"|\"Māliki yawmi ddīni\"|\" Master of the Day of Judgment \"|\"  Master of the Day of Judgment, \"|\"  Master of the Day of Judgment\"",
+  "@version": "1",
+  "juz": 1,
+  "page": 1,
+  "chapter": 1,
+  "host": "dodzPrecision",
+  "bid": "1.3",
+  "ar": "مَٰلِكِ يَوْمِ ٱلدِّينِ",
+  "ar_simple": "مالك يوم الدين",
+  "transcript": "Māliki yawmi ddīni",
+  "social_agregates": {
+    "likes": 3,
+    "comments": 5,
+    "links": 4,
+    "photos": 0,
+    "videos": 0,
+    "shares": 0
+  }
+}
+
+###
+POST http://localhost:9200/books/doc/1.5/_update
+content-type: application/json
+
+{
+  "doc": {
+    "social_agregates": {
+      "likes": 0,
+      "comments": 0,
+      "links": 0,
+      "photos": 0,
+      "videos": 0,
+      "shares": 0
+    }
+  }
+}
+
+###
+POST http://localhost:9200/books/doc/1.5/_update
+content-type: application/json
+
+{
+  "script" : "ctx._source.social_agregates.likes += 1"
+}
+
+
+###
+POST http://localhost:9200/likes/_doc
+content-type: application/json
+
+{
+  "parentVerseId": "1.2",
+  "user": "jsmith",
+  "@timestamp": "2018-03-04T08:49:07.210Z"
+}
+
+###
+POST http://localhost:9200/comments/_doc
+content-type: application/json
+
+{
+  "parentVerseId": "1.3",
+  "user": "mdarwish",
+  "@timestamp": "2018-03-04T08:49:07.210Z",
+  "comment": "userComment",
+  "totalLikes": 0,
+  "likes": [],
+  "totalReplies": 0,
+  "replies": []
+}
+
+#Clean social interactions
+###
+POST http://localhost:9200/books/doc/_update_by_query
+content-type: application/json
+
+{
+ "query" : {
+    "term" : {
+    "_type" : "doc"
+    }
+  },
+  "script": {
+    "inline" : "ctx._source.social_agregates = params.social",
+    "language": "painless",
+    "params": {
+      "social": { "likes": 0, "comments": 0, "links": 0, "photos": 0, "videos": 0, "shares": 0 }
+    }
+  }
+}
+
+###
+{
+  "@timestamp" : "2018-03-04T09:00:16.230Z",
+  "en2" : " Show us the straight path,  ",
+  "en3" : " Keep us on the right path",
+  "en1" : " Show us the straight way,  ",
+  "path" : "/home/dodz/Info/Developement/Faithbook/row-data/Quran/quran-simple-clean-noBasmala2.txt",
+  "type" : "quran",
+  "gsort" : 6,
+  "verse" : 5,
+  "message" : "1|5|\"اهدنا الصراط المستقيم\"",
+  "@version" : "1",
+  "juz" : 1,
+  "page" : 1,
+  "chapter" : 1,
+  "host" : "dodzPrecision",
+  "bid" : "1.5",
+  "ar" : "ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ",
+  "transcript" : " Ihdinā ṣṣirāṭa l-mustaqīma",
+  "number" : "15",
+  "ar_simple" : "اهدنا الصراط المستقيم",
+  "testament" : "L"
+}
+
+###
+POST http://localhost:9200/books/doc/_search?size=10000&from=0
+content-type: application/json
+
+{
+    "sort": [
+      {
+        "gsort": {
+          "order": "asc"
+        }
+      }
+    ],
+    "query": {
+      "match": {
+        "message": "god"
+      }
+    },
+    "aggs": {
+      "chapter": {
+        "terms": {
+          "field": "chapter"
+        }
+      }
+    }
+  }
+
+###
+POST http://localhost:9200/books/doc/_search
+content-type: application/json
+
+{
+  "query": {
+    "match": {
+      "message": "god"
+    }
+  },
+  "aggs": {
+    "chapter": {
+      "terms": {
+        "field": "chapter"
+      }
+    }
+  }
+}

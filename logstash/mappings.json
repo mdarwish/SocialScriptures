@@ -1,0 +1,18 @@
+{
+    "userName": "",
+    "password": "",
+    "firstName": "",
+    "lastName":"",
+    "contacts": {
+        "Home": [],
+        "Mobile": [],
+        "Work": [],
+        "Fax":[],
+        "Other": []
+    },
+    "addresses": {
+        "Home": [],
+        "Work": [],
+        "Other": []
+    }
+}

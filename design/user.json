@@ -1,0 +1,38 @@
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "madianName": "Well",
+  "userName": "jsmith",
+  "password": "*******",
+  "dateOfBirth": "05/28/1960",
+  "address": [
+    {
+      "type": "primary",
+      "streetAddress": "21 2nd Street",
+      "city": "New York",
+      "state": "NY",
+      "postalCode": "10021"
+    },
+    {
+      "type": "home",
+      "streetAddress": "21 2nd Street",
+      "city": "New York",
+      "state": "NY",
+      "postalCode": "10021"
+    }
+  ],
+  "phoneNumber": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "cell",
+      "number": "212 666-4321"
+    },
+    {
+      "type": "fax",
+      "number": "646 555-4567"
+    }
+  ]
+}
