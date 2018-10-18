@@ -1,10 +1,11 @@
-<div class="ui fixed menu">
-  <div class="ui container">
+<div class="ui menu">
+<div class="item">
     <div class="ui action input">
         <input placeholder="Search..." type="text" [(ngModel)]="searchTerm">
         <button class="ui icon button" (click)="compileSearch()" >
           <i class="search icon"></i>
         </button>
+      </div>
       </div>
     <a routerLink="home" class="item"><i class="home icon"></i>Home</a>
     <a routerLink="contact" class="item"><i class="mail icon"></i> Contact</a>
@@ -35,5 +36,4 @@
         <a class="ui basic blue button" href="signup"><i class="add user icon"></i>Sign up</a>
       </div>
     </div>
-  </div>
 </div>

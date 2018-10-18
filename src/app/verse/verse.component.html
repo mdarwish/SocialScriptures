@@ -2,25 +2,44 @@
   <i class="dropdown icon" (click)="toggleExpand()"></i>
   <strong>Chapter:</strong> "{{chMeta._source.en_name}}" |
   <strong>Verse:</strong> "{{ verse._source.verse }}"
+  <span class="ui segment center aligned" *ngIf="!expand">{{verse._source.ar_simple}}</span>
 </div>
-<div class="{{contentCollapse}}">
-  <hr>
-  <p class="{{transition}}" style="direction: rtl; display: block !important;">{{verse._source.ar_simple}}</p>
-  <hr>
+<div class="ui  massive segments {{contentCollapse}}">
+<div class="ui secondary segment right aligned">
+  <p class="{{transition}}" style="direction: rtl">{{verse._source.ar_simple}}</p>
+  </div>
+<div class="ui segment left aligned">
   <p class="{{transition}}" style="display: block !important;">{{verse._source.en1}}</p>
-  <hr>
-  <div class="fluid card">
+  </div>
+<div class="ui segment">
     <div class="content">
-      <span class="right floated">
-        <i class="heart outline like icon" (click)="addLike()"></i>
+      <span class="ui right floated">
+      <span data-tooltip="Like this verse"  data-position="top center">
+        <i class="ui red heart icon"  (click)="addLike()"></i>
         <span *ngIf="social_interactions">
           {{social_interactions.likes}}
         </span>
       </span>
-      <i class="comment icon" (click)="toggleComments()"></i>
+        </span>
+      <span data-tooltip="Show comments"  data-position="bottom center">
+      <i class="blue comment icon" (click)="toggleComments()"></i>
       <span *ngIf="social_interactions">
         {{social_interactions.comments}}
       </span>
+        </span>
+      <span data-tooltip="Link to other verse"  data-position="top center">
+      <i class="purple linkify icon"></i>
+      <span *ngIf="social_interactions">
+        {{social_interactions.comments}}
+      </span>
+        </span>
+      <span data-tooltip="Media"  data-position="bottom center">
+      <i class="orange film icon"></i>
+      <span *ngIf="social_interactions">
+        {{social_interactions.comments}}
+      </span>
+      </span>
+    </div>
     </div>
     <app-comments [comments] = comments *ngIf="commentsExpanded" class = "ui segment" ></app-comments>
     <div class="extra content">
@@ -28,6 +47,5 @@
         <i class="comment outline icon"></i>
         <input placeholder="Add Comment..." type="text" (keypress)="addComment($event)" [(ngModel)]="userComment">
       </div>
-    </div>
-  </div>
-</div>
+
+

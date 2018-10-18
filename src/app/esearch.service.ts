@@ -177,7 +177,7 @@ export class EsearchService {
   }
 
   addComment(verseID: string, userComment: string): any {
-    const url: string = this.baseURL + "/comments";
+    const url: string = this.baseURL + "/comments/_doc";
     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
     const data = {

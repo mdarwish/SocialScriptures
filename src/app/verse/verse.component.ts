@@ -28,10 +28,10 @@ export class VerseComponent implements OnInit {
 
   userComment = null;
   commentsExpanded = false;
-  expand = true;
+  expand = false;
   liked = false;
-  titleCollapse = 'title active';
-  contentCollapse = 'content active';
+  titleCollapse = 'title';
+  contentCollapse = 'content';
   transition = 'transition visible';
   chMeta: any;
 
@@ -112,6 +112,7 @@ export class VerseComponent implements OnInit {
   }
 
   commentAdded(): void {
+    this.userComment = "";
     const payload: any = {
       "script" : "ctx._source.social_agregates.comments += 1"
     };
