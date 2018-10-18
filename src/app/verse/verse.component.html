@@ -1,8 +1,14 @@
 <div class="{{titleCollapse}}">
+<div class="ui internally celled grid">
+<div class="row">
+<span class="eight wide column">
   <i class="dropdown icon" (click)="toggleExpand()"></i>
   <strong>Chapter:</strong> "{{chMeta._source.en_name}}" |
   <strong>Verse:</strong> "{{ verse._source.verse }}"
-  <span class="ui segment center aligned" *ngIf="!expand">{{verse._source.ar_simple}}</span>
+  </span>
+  <span class="ui segment center aligned eight wide column" *ngIf="!expand">{{verse._source.ar_simple}}</span>
+  </div>
+</div>
 </div>
 <div class="ui  massive segments {{contentCollapse}}">
 <div class="ui secondary segment right aligned">
