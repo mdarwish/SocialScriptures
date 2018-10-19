@@ -157,27 +157,29 @@ export class EsearchService {
   getActivityStream(): any {}
 
   updateVerse(id: string, data: any): any {
-    const url: string = this.baseURL + "/books/" + id + "/_update";
+    const url: string = this.baseURL + "/books/doc" + id + "/_update";
     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
+    this.logger.info("esrach.service::updateVerse - url: " + url);
+    this.logger.info("esrach.service::updateVerse - data: " + data);
 
     return this._http.post(url, data, options).map(res => res.json());
   }
 
-  addLike(verseID: string): any {
-    const url: string = this.baseURL + "/likes/";
+  addLike(verseID: string, usr: string): any {
+    const url: string = this.baseURL + "/likes/_doc";
     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
     const data = {
       parentVerseId: verseID,
-      user: "mdarwish",
+      user: usr,
       timestamp: new Date()
     };
     return this._http.post(url, data, options).map(res => res.json());
   }
 
   addComment(verseID: string, userComment: string): any {
-    const url: string = this.baseURL + "/comments/_doc";
+    const url: string = this.baseURL + "/comments/_doc/";
     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
     const data = {
@@ -193,8 +195,8 @@ export class EsearchService {
     return this._http.post(url, data, options).map(res => res.json());
   }
 
-  getLikesCount(verseID: string): any {
-    const url: string = this.baseURL + "/likes/_count?q=parentVerseId:" + verseID;
+  getLikesCount(verseID: string, user: string): any {
+    const url: string = this.baseURL + "/likes/_count?q=parentVerseId:" + verseID + ",user:" + user;
 /*     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
  */
@@ -203,6 +205,7 @@ export class EsearchService {
 
   getCommentsCount(verseID: string): any {
     const url: string = this.baseURL + "/comments/_count?q=parentVerseId:" + verseID;
+    this.logger.info("url: " + url);
 /*     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
  */

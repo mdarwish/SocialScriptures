@@ -272,11 +272,11 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:9200/books/doc/1.5/_update
+POST http://localhost:9200/books/doc/1.1/_update
 content-type: application/json
 
 {
-  "script" : "ctx._source.social_agregates.likes += 1"
+  "script" : "ctx._source.social_agregates.likes = 1"
 }
 
 

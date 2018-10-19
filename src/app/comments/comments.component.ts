@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {TransitionController, Transition, TransitionDirection} from "ng2-semantic-ui";
 
 @Component({
   selector: 'app-comments',
@@ -6,24 +7,35 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
-  commentsObservable: any;
+  @Input() commentsObservable: any;
   @Input() comments: any;
 
+  public transitionController;
+    
   titleCollapse = 'title active';
   contentCollapse = 'content active';
   transition = 'transition';
-  expand = true;
+  expand = false;
 
-  constructor() { }
+  constructor() { 
+    this.transitionController = new TransitionController(false, "block");
+  }
 
   ngOnInit() {
-    this.expand = true;
+    //this.expand = false;
+    this.toggleExpand();
   }
+
+  public animate(transitionName:string = "fly left") {
+    this.transitionController.animate(
+        new Transition(transitionName, 300, TransitionDirection.In, () => console.log("Completed transition.")));
+ }
 
   toggleExpand(): void {
     this.expand = !this.expand;
-    this.titleCollapse = (this.expand) ? 'title active transition' : 'title transition';
-    this.contentCollapse = (this.expand) ? 'content active transition' : 'content transition';
-    this.transition = (this.transition) ? 'transition visible' : 'transition';
+    if(this.expand) this.animate();
+    this.titleCollapse = (this.expand) ? 'title active ' : 'title ';
+    this.contentCollapse = (this.expand) ? 'content active ' : 'content ';
+    //this.transition = (this.expand) ? 'transition visible' : 'transition';
   }
 }

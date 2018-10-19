@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AlertModule } from '../../node_modules/ngx-bootstrap';
+import {SuiModule} from 'ng2-semantic-ui';
 
 import { AppComponent } from './app.component';
 import { EsearchService } from './esearch.service';
@@ -47,6 +48,7 @@ import { NgLoggerModule, Level } from '@nsalaun/ng-logger';
     ReactiveFormsModule,
     AppRoutingModule,
     AlertModule,
+    SuiModule,
     NgLoggerModule.forRoot(Level.LOG)
   ],
   providers: [EsearchService, SharedService],

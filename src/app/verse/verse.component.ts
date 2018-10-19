@@ -3,6 +3,7 @@ import { Component, OnInit , Input, HostListener, Output} from '@angular/core';
 import { EsearchService } from './../esearch.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Logger } from '@nsalaun/ng-logger';
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-verse',
@@ -27,7 +28,7 @@ export class VerseComponent implements OnInit {
   };
 
   userComment = null;
-  commentsExpanded = false;
+  commentsExpanded = true;
   expand = false;
   liked = false;
   titleCollapse = 'title';
@@ -73,21 +74,24 @@ export class VerseComponent implements OnInit {
   }
 
   addLike(): void {
-    this.es.addLike(this.verse._source.bid).subscribe(
+    this.es.addLike(this.verse._source.bid, "mdarwish").subscribe(
       data => this.likeAdded(),
       error => this.updateFailed(error),
-      () =>  this.logger.info("Request Completed")
-    );
-    this.es.getLikesCount(this.verse._source.bid).subscribe(
-      data => (data.count === 0 ) ? this.social_interactions.likes++ : this.social_interactions.likes = data.count + 1,
-      error =>  this.logger.info("Error getting likes!"),
       () =>  this.logger.info("Request Completed")
     );
   }
 
   likeAdded(): void {
+    if(this.liked) return;
+    this.es.getLikesCount(this.verse._source.bid, "mdarwish").subscribe(
+      data => (data.count === 0 ) ? this.social_interactions.likes++ : this.social_interactions.likes = data.count + 1,
+      error =>  this.logger.info("Error getting likes!"),
+      () =>  this.logger.info("Request Completed")
+    );
+
+    const updateString: string = "ctx._source.social_agregates.likes = " + this.social_interactions.likes;
     const payload = {
-      "script" : "ctx._source.social_agregates.likes += 1"
+      "script" : updateString
     };
 
     this.es.updateVerse(this.verse._source.bid, payload).subscribe(
@@ -113,19 +117,22 @@ export class VerseComponent implements OnInit {
 
   commentAdded(): void {
     this.userComment = "";
+    this.es.getCommentsCount(this.verse._source.bid).subscribe(
+      data => (data.count === 0 ) ? this.social_interactions.comments++ : this.social_interactions.comments = data.count +1,
+      error => this.logger.info("Error getting comments!"),
+      () => [ this.logger.info("Request Completed"), this.userComment = ""]
+    );
+
+    const updateString = "ctx._source.social_agregates.comments = " + this.social_interactions.comments;
+    this.logger.info("Update string: " + updateString);
     const payload: any = {
-      "script" : "ctx._source.social_agregates.comments += 1"
+      "script": updateString
     };
 
     this.es.updateVerse(this.verse._source.bid, payload).subscribe(
       data => this.getComments(),
       error => this.updateFailed(error),
       () =>  this.logger.info("Request Completed")
-    );
-    this.es.getCommentsCount(this.verse._source.bid).subscribe(
-      data => (data.count === 0 ) ? this.social_interactions.comments++ : this.social_interactions.comments = data.count + 1,
-      error =>  this.logger.info("Error getting comments!"),
-      () => [ this.logger.info("Request Completed"), this.userComment = ""]
     );
   }
 
@@ -136,11 +143,15 @@ export class VerseComponent implements OnInit {
 
   getComments(): void {
     this.es.getComments(this.verse._source.bid).subscribe(
-      data => this.commentsSource.next(data.hits.hits),
+      data => this.refreshComments(data),
       error =>  this.logger.info("Error getting comments!"),
       () => [ this.logger.info("Request Completed"), this.userComment = ""]
     );
   }
 
+  refreshComments(data: any) {
+    this.commentsSource.next(data.hits.hits);
+    this.social_interactions.comments = data.hits.total;
+  }
 }
 

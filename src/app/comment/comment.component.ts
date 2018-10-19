@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {TransitionController, Transition, TransitionDirection} from "ng2-semantic-ui";
+
 
 @Component({
   selector: 'app-comment',
@@ -12,10 +14,18 @@ export class CommentComponent implements OnInit {
   contentCollapse = 'content active';
   transition = 'transition';
   expand = true;
+  public transitionController;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() { 
+    this.transitionController = new TransitionController(false, "block");
   }
 
+  ngOnInit() {
+    this.animate();
+  }
+
+  public animate(transitionName:string = "fly left") {
+    this.transitionController.animate(
+        new Transition(transitionName, 300, TransitionDirection.In, () => console.log("Completed transition.")));
+ }
 }

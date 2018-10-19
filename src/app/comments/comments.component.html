@@ -3,7 +3,9 @@
     <h3 class="ui dividing title header" (click)="toggleExpand()">Comments</h3>
     <div class="{{contentCollapse}}">
       <div *ngFor="let comment of comments">
+     <div [suiTransition]="transitionController">
         <app-comment [comment] = comment></app-comment>
       </div>
     </div>
+   </div>
   </div>
