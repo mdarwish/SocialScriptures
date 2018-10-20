@@ -20,7 +20,7 @@
 *.sublime-workspace
 .vscode
 .vs
-./data/snapshot
+/data/snapshot
 
 # IDE - VSCode
 .vscode/*
