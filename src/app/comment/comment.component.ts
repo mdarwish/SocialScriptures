@@ -24,7 +24,7 @@ export class CommentComponent implements OnInit {
     this.animate();
   }
 
-  public animate(transitionName:string = "fly left") {
+  public animate(transitionName:string = "browse") {
     this.transitionController.animate(
         new Transition(transitionName, 300, TransitionDirection.In, () => console.log("Completed transition.")));
  }

@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
-  ELK_HOST: 'localhost',
-  ELK_PORT: '9200',
+  ELK_HOST: '4fd24d26c7454e18b5a8bbc075165712.us-central1.gcp.cloud.es.io',
+  ELK_PORT: '9243',
+  ELK_URL: "https://elastic:Xx9vKTTwUbNOT2iM4i8nSuEf@4fd24d26c7454e18b5a8bbc075165712.us-central1.gcp.cloud.es.io:9243"
 };

@@ -3,7 +3,7 @@ import { Component, OnInit , Input, HostListener, Output} from '@angular/core';
 import { EsearchService } from './../esearch.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Logger } from '@nsalaun/ng-logger';
-import { stringify } from '@angular/core/src/util';
+import {TransitionController, Transition, TransitionDirection} from "ng2-semantic-ui";
 
 @Component({
   selector: 'app-verse',
@@ -36,7 +36,22 @@ export class VerseComponent implements OnInit {
   transition = 'transition visible';
   chMeta: any;
 
-  constructor(private es: EsearchService, private logger: Logger) { }
+  public transitionController;
+  public animate(transitionName:string = "fade") {
+    if(this.expand)
+    {
+      this.transitionController.animate(
+        new Transition(transitionName, 600, TransitionDirection.In, () => console.log("Completed transition.")));
+    }
+    else {
+      this.transitionController.animate(
+        new Transition(transitionName, 600, TransitionDirection.Out, () => console.log("Completed transition.")));
+    }
+ }
+
+  constructor(private es: EsearchService, private logger: Logger) { 
+    this.transitionController = new TransitionController();
+  }
 
   ngOnInit() {
     this.commentsSource.subscribe(newComments => this.comments = newComments);
@@ -68,6 +83,7 @@ export class VerseComponent implements OnInit {
 
  toggleExpand(): void {
     this.expand = !this.expand;
+    this.animate();
     this.titleCollapse = (this.expand) ? 'title active' : 'title';
     this.contentCollapse = (this.expand) ? 'content active' : 'content';
     // this.transition = (this.transition) ? 'transition visible' : 'transition';

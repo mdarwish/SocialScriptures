@@ -5,6 +5,7 @@
       <p></p>
     </div>
 <div *ngIf="lazyLoad !=='active'">
+<div [suiTransition]="transitionController"> <!-- -->
 <div class="ui internally celled grid">
   <div class="column">
     <div class="ui row center aligned votes">
@@ -16,17 +17,6 @@
           {{ chapter._source.ar_name }}
         </div>
       </div>
-      <!--       <div class="ui styled">
-        <button *ngIf="showPrev" class="ui left labeled icon button">
-          <i class="left arrow icon"></i>
-          Previous Chapter
-        </button>
-        <button *ngIf="showNext" class="ui right labeled icon button">
-          <i class="right arrow icon"></i>
-          Next Chapter
-        </button>
-      </div>
- -->
     </div>
     <div class="ui styled fluid row">
       <div class="ui styled fluid accordion massive segment">
@@ -38,7 +28,7 @@
     <div class="ui styled fluid">
       <button *ngIf="showPrev" class="ui left floated icon labeled button">
         <i class="left floated chevron icon"></i>
-        Next
+        Prev
       </button>
       <button *ngIf="showNext" class="ui right floated icon labeled button">
         <i class="right floated chevron icon"></i>
@@ -46,5 +36,6 @@
       </button>
     </div>
   </div>
+</div>
 </div>
 </div>

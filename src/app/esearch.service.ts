@@ -4,15 +4,15 @@ import { Http, Headers, RequestOptions } from "@angular/http";
 import { Client } from "elasticsearch";
 import "rxjs/add/operator/map";
 import { Logger } from "@nsalaun/ng-logger";
+//import { SharedService } from './shared.service';
 
 @Injectable()
 export class EsearchService {
   private host: string = environment.ELK_HOST;
   private port: string = environment.ELK_PORT;
-  private baseURL: string = "http://" +
-  environment.ELK_HOST +
-  ":" +
-  environment.ELK_PORT;
+  private baseURL: string = environment.ELK_URL;
+  //OR "https://elastic:Xx9vKTTwUbNOT2iM4i8nSuEf@" +  environment.ELK_HOST +  ":" + environment.ELK_PORT
+  
   client: Client;
   searchResults = [];
   resultCount = 0;
@@ -30,6 +30,7 @@ export class EsearchService {
   }
 
   private connect() {
+    this.logger.info("elk base url: " + this.baseURL);
     this.client = new Client({
       host: this.baseURL,
       log: "trace"
@@ -167,7 +168,7 @@ export class EsearchService {
   }
 
   addLike(verseID: string, usr: string): any {
-    const url: string = this.baseURL + "/likes/_doc";
+    const url: string = this.baseURL + "/likes/_doc/";
     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
     const data = {
@@ -217,6 +218,8 @@ export class EsearchService {
 /*     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
  */
+    this.logger.info("Request url: " + url);
+    
     return this._http.get(url).map(res => res.json());
   }
 
@@ -248,3 +251,4 @@ export class EsearchService {
     });
   }
 }
+

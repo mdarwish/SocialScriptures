@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { EsearchService } from "./../esearch.service";
 import { SharedService } from "./../shared.service";
+import {TransitionController, Transition, TransitionDirection} from "ng2-semantic-ui";
 import { Logger } from "@nsalaun/ng-logger";
 
 @Component({
@@ -23,6 +24,12 @@ export class ChapterComponent implements OnInit {
   verses: any;
   lazyLoad = "active";
 
+  public transitionController;
+  public animate(transitionName:string = "browse") {
+    this.transitionController.animate(
+        new Transition(transitionName, 600, TransitionDirection.In, () => console.log("Completed transition.")));
+ }
+
   constructor(
     private es: EsearchService,
     private sharedSearch: SharedService,
@@ -44,6 +51,7 @@ export class ChapterComponent implements OnInit {
     } else {
       this.getFullChapter(this.bname, this.cid);
     }
+    this.animate();
   }
 
   getDefaultChapter() {

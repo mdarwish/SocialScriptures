@@ -10,6 +10,7 @@
   </div>
 </div>
 </div>
+<div *ngIf="expand" [suiTransition]="transitionController"> <!--  -->
 <div class="ui  massive segments {{contentCollapse}}">
 <div class="ui secondary segment right aligned">
   <p class="{{transition}}" style="direction: rtl">{{verse._source.ar_simple}}</p>
@@ -53,5 +54,8 @@
         <i class="comment outline icon"></i>
         <input placeholder="Add Comment..." type="text" (keypress)="addComment($event)" [(ngModel)]="userComment">
       </div>
+  </div>
+  </div>
+  
 
 

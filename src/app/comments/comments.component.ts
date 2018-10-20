@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {TransitionController, Transition, TransitionDirection} from "ng2-semantic-ui";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-comments',
@@ -10,12 +11,17 @@ export class CommentsComponent implements OnInit {
   @Input() commentsObservable: any;
   @Input() comments: any;
 
-  public transitionController;
     
   titleCollapse = 'title active';
   contentCollapse = 'content active';
   transition = 'transition';
   expand = false;
+
+  public transitionController;
+  public animate(transitionName:string = "browse") {
+    this.transitionController.animate(
+        new Transition(transitionName, 600, TransitionDirection.In, () => console.log("Completed transition.")));
+ }
 
   constructor() { 
     this.transitionController = new TransitionController(false, "block");
@@ -25,11 +31,6 @@ export class CommentsComponent implements OnInit {
     //this.expand = false;
     this.toggleExpand();
   }
-
-  public animate(transitionName:string = "fly left") {
-    this.transitionController.animate(
-        new Transition(transitionName, 300, TransitionDirection.In, () => console.log("Completed transition.")));
- }
 
   toggleExpand(): void {
     this.expand = !this.expand;
