@@ -160,7 +160,7 @@ export class VerseComponent implements OnInit {
   getComments(): void {
     this.es.getComments(this.verse._source.bid).subscribe(
       data => this.refreshComments(data),
-      error =>  this.logger.info("Error getting comments!"),
+      error =>  this.logger.info("Error getting comments due to this error: \n" + error),
       () => [ this.logger.info("Request Completed"), this.userComment = ""]
     );
   }

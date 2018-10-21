@@ -206,7 +206,7 @@ export class EsearchService {
 
   getCommentsCount(verseID: string): any {
     const url: string = this.baseURL + "/comments/_count?q=parentVerseId:" + verseID;
-    this.logger.info("url: " + url);
+    this.logger.info("Comments Count url: " + url);
 /*     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
  */
@@ -218,7 +218,7 @@ export class EsearchService {
 /*     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
  */
-    this.logger.info("Request url: " + url);
+    this.logger.info("Comments url: " + url);
     
     return this._http.get(url).map(res => res.json());
   }
