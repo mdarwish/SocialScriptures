@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {TransitionController, Transition, TransitionDirection} from "ng2-semantic-ui";
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+//import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-comments',
@@ -8,7 +9,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
-  @Input() commentsObservable: any;
   @Input() comments: any;
 
     
@@ -26,9 +26,10 @@ export class CommentsComponent implements OnInit {
   constructor() { 
     this.transitionController = new TransitionController(false, "block");
   }
-
+// .subscribe(newComments => this.comments = newComments);
   ngOnInit() {
     //this.expand = false;
+    //this.commentsObservable.subscribe(newComments => this.comments = newComments);
     this.toggleExpand();
   }
 

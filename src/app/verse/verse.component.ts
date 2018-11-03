@@ -90,7 +90,7 @@ export class VerseComponent implements OnInit {
   }
 
   addLike(): void {
-    this.es.addLike(this.verse._source.bid, "mdarwish").subscribe(
+    this.es.addLike(this.verse._id, "mdarwish").subscribe(
       data => this.likeAdded(),
       error => this.updateFailed(error),
       () =>  this.logger.info("Request Completed")
@@ -99,9 +99,9 @@ export class VerseComponent implements OnInit {
 
   likeAdded(): void {
     if(this.liked) return;
-    this.es.getLikesCount(this.verse._source.bid, "mdarwish").subscribe(
+    this.es.getLikesCount(this.verse._id, "mdarwish").subscribe(
       data => (data.count === 0 ) ? this.social_interactions.likes++ : this.social_interactions.likes = data.count + 1,
-      error =>  this.logger.info("Error getting likes!"),
+      error =>  this.logger.info("Error getting likes due to: " + error),
       () =>  this.logger.info("Request Completed")
     );
 
@@ -110,7 +110,7 @@ export class VerseComponent implements OnInit {
       "script" : updateString
     };
 
-    this.es.updateVerse(this.verse._source.bid, payload).subscribe(
+    this.es.updateVerse(this.verse._id, payload).subscribe(
       data =>  this.logger.info("Likes updated successfully! server response = " + data.results),
       error => this.updateFailed(error),
       () =>  this.logger.info("Request Completed")
@@ -123,7 +123,7 @@ export class VerseComponent implements OnInit {
 
   addComment(event: KeyboardEvent): void {
     if ( event.keyCode === 13 && this.userComment.length > 0 ) {
-      this.es.addComment(this.verse._source.bid, this.userComment).subscribe(
+      this.es.addComment(this.verse._id, this.userComment).subscribe(
         data => this.commentAdded(),
         error => this.updateFailed(error),
         () =>  this.logger.info("Request Completed")
@@ -133,8 +133,8 @@ export class VerseComponent implements OnInit {
 
   commentAdded(): void {
     this.userComment = "";
-    this.es.getCommentsCount(this.verse._source.bid).subscribe(
-      data => (data.count === 0 ) ? this.social_interactions.comments++ : this.social_interactions.comments = data.count +1,
+    this.es.getCommentsCount(this.verse._id).subscribe(
+      data => (data.count === 0 ) ? this.social_interactions.comments++ : this.social_interactions.comments = data.count,
       error => this.logger.info("Error getting comments!"),
       () => [ this.logger.info("Request Completed"), this.userComment = ""]
     );
@@ -145,7 +145,7 @@ export class VerseComponent implements OnInit {
       "script": updateString
     };
 
-    this.es.updateVerse(this.verse._source.bid, payload).subscribe(
+    this.es.updateVerse(this.verse._id, payload).subscribe(
       data => this.getComments(),
       error => this.updateFailed(error),
       () =>  this.logger.info("Request Completed")
@@ -158,9 +158,15 @@ export class VerseComponent implements OnInit {
   }
 
   getComments(): void {
-    this.es.getComments(this.verse._source.bid).subscribe(
+    this.es.getComments(this.verse._id).subscribe(
       data => this.refreshComments(data),
       error =>  this.logger.info("Error getting comments due to this error: \n" + error),
+      () => [ this.logger.info("Request Completed"), this.userComment = ""]
+    );
+
+    this.es.getCommentsCount(this.verse._id).subscribe(
+      data => this.social_interactions.comments = data.count,
+      error => this.logger.info("Error getting comments count!"),
       () => [ this.logger.info("Request Completed"), this.userComment = ""]
     );
   }

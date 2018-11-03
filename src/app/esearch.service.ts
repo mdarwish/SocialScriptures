@@ -33,7 +33,7 @@ export class EsearchService {
     this.logger.info("elk base url: " + this.baseURL);
     this.client = new Client({
       host: this.baseURL,
-      log: "trace"
+      log: "error"
     });
   }
 
@@ -126,6 +126,12 @@ export class EsearchService {
     });
   }
 
+  FTS(queryTerm: string, size= 10000, from= 0): any {
+    const url: string = this.baseURL + "/books/_search?q=" + queryTerm + "&size=" + size +"&sort=gsort:asc";
+    this.logger.info("esearch.service::search - url: " + url);
+    return this._http.get(url).map(res => res.json());
+  }
+
   searchAll(queryTerm: string, size= 10000, from= 0): any {
     return this.client.search({
       index: "books",
@@ -158,11 +164,11 @@ export class EsearchService {
   getActivityStream(): any {}
 
   updateVerse(id: string, data: any): any {
-    const url: string = this.baseURL + "/books/doc" + id + "/_update";
+    const url: string = this.baseURL + "/books/doc/" + id + "/_update";
     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
-    this.logger.info("esrach.service::updateVerse - url: " + url);
-    this.logger.info("esrach.service::updateVerse - data: " + data);
+    this.logger.info("esearch.service::updateVerse - url: " + url);
+    this.logger.info("esearch.service::updateVerse - data: " + data);
 
     return this._http.post(url, data, options).map(res => res.json());
   }
@@ -197,27 +203,39 @@ export class EsearchService {
   }
 
   getLikesCount(verseID: string, user: string): any {
-    const url: string = this.baseURL + "/likes/_count?q=parentVerseId:" + verseID + ",user:" + user;
-/*     const headers = new Headers({ "Content-Type": "application/json" });
-    const options = new RequestOptions({ headers: headers });
- */
+    const url: string = this.baseURL + '/likes/_count?q=parentVerseId:"' + verseID + '",user:' + user;
+
+    this.logger.info("Likes Count url: " + url);
     return this._http.get(url).map(res => res.json());
   }
 
   getCommentsCount(verseID: string): any {
-    const url: string = this.baseURL + "/comments/_count?q=parentVerseId:" + verseID;
-    this.logger.info("Comments Count url: " + url);
-/*     const headers = new Headers({ "Content-Type": "application/json" });
+    const url: string = this.baseURL + '/comments/_count?q=parentVerseId:"' + verseID +'"';
+    const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
- */
+    const body = {
+      "query": {
+              "bool": {
+                "must": [{ "term": { "parentVerseId": verseID}}]
+              }
+      }
+    }
+    this.logger.info("Comments Count url: " + url);
     return this._http.get(url).map(res => res.json());
   }
 
   getComments(verseID: string): any {
-    const url: string = this.baseURL + "/comments/_search?sort=timestamp:desc&q=parentVerseId:" + verseID;
-/*     const headers = new Headers({ "Content-Type": "application/json" });
+    const id: string = '"' + verseID + '"';
+    const url: string = this.baseURL + '/comments/_search?q=parentVerseId:"' + verseID + '"&sort=timestamp:desc';
+    const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
- */
+    const body = {
+      "query": {
+              "bool": {
+                "must": [{ "term": { "parentVerseId": id}}]
+              }
+      }
+    }
     this.logger.info("Comments url: " + url);
     
     return this._http.get(url).map(res => res.json());

@@ -60,16 +60,11 @@ export class SharedService {
 
   performSearch(query) {
     this.getChaptersMeta();
-    return this.es.searchAll(query).then(response => {
-      this.searchSuccess(response);
-    });
-/*
-    .subscribe(
+    return this.es.FTS(query).subscribe(
       data => this.searchSuccess(data),
       error => this.searchFailed(error),
       () =>  this.logger.log("Request Completed")
     );
- */
 }
 
   searchSuccess(data) {

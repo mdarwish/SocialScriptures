@@ -3,7 +3,9 @@
 <div class="row">
 <span class="eight wide column">
   <i class="dropdown icon" (click)="toggleExpand()"></i>
+  <span  *ngIf="chMeta !== undefined">
   <strong>Chapter:</strong> "{{chMeta._source.en_name}}" |
+  </span>
   <strong>Verse:</strong> "{{ verse._source.verse }}"
   </span>
   <span class="ui segment center aligned eight wide column" *ngIf="!expand">{{verse._source.ar_simple}}</span>

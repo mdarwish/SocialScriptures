@@ -1,7 +1,7 @@
 GET http://localhost:9200/chapters/_search?sort=q_order:asc&q=type:quran
 
 ###
-GET http://localhost:9200/chapters/_search HTTP/1.1
+GET http://localhost:9200/chapters/_search
 content-type: application/json
 
 {
@@ -14,7 +14,8 @@ content-type: application/json
         "order": "asc"
       }
     }
-  ]
+  ],
+  "size": 300
 }
 
 ###

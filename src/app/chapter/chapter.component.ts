@@ -25,6 +25,7 @@ export class ChapterComponent implements OnInit {
   lazyLoad = "active";
 
   public transitionController;
+
   public animate(transitionName:string = "browse") {
     this.transitionController.animate(
         new Transition(transitionName, 600, TransitionDirection.In, () => console.log("Completed transition.")));
@@ -34,7 +35,9 @@ export class ChapterComponent implements OnInit {
     private es: EsearchService,
     private sharedSearch: SharedService,
     private logger: Logger
-  ) {}
+  ) {
+    this.transitionController = new TransitionController();
+  }
 
   ngOnInit() {
     if (this.bname === "" && this.cid === -1) {
